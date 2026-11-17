@@ -55,7 +55,7 @@ flowchart TD
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/ChaosLLM.git
+git clone https://github.com/rakibul200514/ChaosLLM.git
 cd ChaosLLM
 ```
 
