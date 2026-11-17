@@ -98,5 +98,47 @@ Open `http://localhost:8501` in your browser!
 
 ---
 
+## ❓ Frequently Asked Questions (FAQ)
+
+<details>
+<summary><b>1. Why is system prompt hardening necessary for production LLMs?</b></summary>
+<br>
+In production applications, system prompts define foundational boundaries, compliance rules, and sometimes access keys or internal policies. Without hardening, malicious users can employ prompt injections, roleplay traps, or delimiter confusion to hijack the model's persona, leak confidential directives, or bypass business logic. ChaosLLM automates the discovery of these flaws before deployment.
+</details>
+
+<details>
+<summary><b>2. Does running ChaosLLM require a paid API subscription?</b></summary>
+<br>
+<b>No.</b> ChaosLLM is designed to be 100% free-tier compatible. You can use Google AI Studio's free Gemini API key (no credit card required). Additionally, ChaosLLM includes a <b>Zero-Key Demo Mode</b> with pre-calibrated simulation vectors so anyone can evaluate the dashboard without any credentials.
+</details>
+
+<details>
+<summary><b>3. How does the automated evaluation engine score vulnerabilities?</b></summary>
+<br>
+ChaosLLM uses a dual-layer grading pipeline:
+1. <b>LLM-as-a-Judge:</b> An evaluator model analyzes the semantic context, checking whether the response adhered to or violated the target system prompt.
+2. <b>Heuristic Engine (Fallback):</b> Lexical overlap analysis and refusal pattern detectors guarantee instant, zero-latency scoring even if the API quota is constrained.
+</details>
+
+<details>
+<summary><b>4. Can I add custom adversarial test cases?</b></summary>
+<br>
+Yes! The test architecture is fully modular. Simply open <code>core/test_cases.py</code> and add your probe dictionary with <code>id</code>, <code>category</code>, <code>severity</code>, <code>probe</code>, and <code>intent</code>. The web dashboard will automatically discover and integrate new test vectors.
+</details>
+
+<details>
+<summary><b>5. Can I test models from OpenAI, Anthropic, or local Ollama instances?</b></summary>
+<br>
+Yes. The probe execution is decoupled in <code>core/runner.py</code>. You can easily plug in any LiteLLM, OpenAI, or local Ollama endpoint by extending the <code>execute_probe()</code> function.
+</details>
+
+<details>
+<summary><b>6. Is this tool compliant with AI safety and ethical research standards?</b></summary>
+<br>
+Yes. ChaosLLM is strictly a <b>defensive security auditing and benchmarking tool</b> created to help engineers identify weaknesses in their own prompts. It aligns with the OWASP Top 10 for LLMs and contains defensive mitigation advice for each finding.
+</details>
+
+---
+
 ## 📜 License
 Distributed under the MIT License. See `LICENSE` for more information.
