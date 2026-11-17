@@ -232,7 +232,10 @@ if "audit_results" in st.session_state and st.session_state["audit_results"]:
             }
         ))
         fig_gauge.update_layout(height=280, margin=dict(l=20, r=20, t=40, b=20))
-        st.plotly_chart(fig_gauge, use_container_width=True)
+        try:
+            st.plotly_chart(fig_gauge, width="stretch")
+        except TypeError:
+            st.plotly_chart(fig_gauge, use_container_width=True)
 
     with col_chart2:
         # Status breakdown bar chart
@@ -247,7 +250,10 @@ if "audit_results" in st.session_state and st.session_state["audit_results"]:
             barmode="stack"
         )
         fig_bar.update_layout(height=280, margin=dict(l=20, r=20, t=40, b=20))
-        st.plotly_chart(fig_bar, use_container_width=True)
+        try:
+            st.plotly_chart(fig_bar, width="stretch")
+        except TypeError:
+            st.plotly_chart(fig_bar, use_container_width=True)
 
     # Detailed Findings Table
     st.subheader("🔍 Detailed Audit Log")
